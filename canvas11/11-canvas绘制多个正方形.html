@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas绘制多个正方形</title>
+</head>
+<body>
+
+
+<!-- 添加画布元素 -->
+<canvas></canvas>
+
+<script>
+
+    // 获取画布元素
+    var canvas = document.querySelector("canvas");
+    // 设置画布的大小及边框
+    canvas.width = 600;
+    canvas.height = 300;
+    canvas.style.border = "1px solid red";
+
+    // 获取画笔 （上下文）
+    var context = canvas.getContext("2d");  // 这是画二维图形的画笔
+
+
+    context.moveTo(50, 50);
+    context.lineTo(150, 50);
+    context.lineTo(150, 150);
+    context.lineTo(50, 150);
+    context.lineTo(50, 50);
+    context.fill();
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo(250,100);
+    context.lineTo(350,100);
+    context.lineTo(350,200);
+    context.lineTo(250,200);
+    context.lineTo(250,100);
+    context.fill();
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

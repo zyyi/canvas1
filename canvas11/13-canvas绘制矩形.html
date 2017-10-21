@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas绘制矩形</title>
+</head>
+<body>
+
+    <canvas></canvas>
+
+    <script>
+
+        var canvas = document.querySelector("canvas");
+
+        canvas.width = 600;
+        canvas.height = 300;
+        canvas.style.border = "1px solid #f00";
+
+        var context = canvas.getContext("2d");
+
+
+//        context.rect(100, 100, 200, 100);
+//        context.stroke();
+
+
+
+//        context.strokeRect(100, 100, 200, 100);
+
+
+        context.fillStyle = "skyblue";
+
+        context.fillRect(100, 100, 200, 100);
+
+
+        context.clearRect(120, 120, 160, 60);
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>

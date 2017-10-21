@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas绘制线段设置样式</title>
+</head>
+<body>
+<canvas width="600px" height="300px"></canvas>
+
+
+<script>
+
+    var canvas = document.querySelector("canvas");
+    //        canvas.width = 600;
+    //        canvas.height = 300;
+
+    canvas.style.border = "1px solid red";
+
+    // 获取2d画笔
+    var context = canvas.getContext("2d");
+
+    /*
+
+    // 计算直线起始点
+    context.moveTo(50, 100);
+    // 计划直线终止点
+    context.lineTo(150, 100);
+
+    // 设置线段的颜色样式
+    context.strokeStyle = "red";
+
+    // 设置线段的宽度
+    context.lineWidth = 10;
+
+
+    // 设置线段末端的类型（butt是默认的类型，round圆角，square小方块）
+    context.lineCap = "butt";
+//    context.lineCap = "round";
+//    context.lineCap = "square";
+
+    // 开始上画笔
+    context.stroke();
+
+    */
+
+
+    //==============================================================================
+
+
+    // 设置线的拐点的样式
+
+    context.moveTo(100, 50);
+    context.lineTo(150, 100);
+    context.lineTo(200, 50)
+
+    // 设置线宽
+    context.lineWidth = 10;
+
+
+    // 设置线拐点的样式  (miter是默认的类型， round圆角， bevel平角)
+//    context.lineJoin = "miter";
+
+//    context.lineJoin = "round";
+
+    context.lineJoin = "bevel";
+
+    context.stroke();
+
+</script>
+</body>
+</html>

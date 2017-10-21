@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>绘制折线图坐标轴</title>
+</head>
+<body>
+
+    <canvas></canvas>
+
+    <script>
+
+        var canvas = document.querySelector("canvas");
+
+        canvas.width = 600;
+        canvas.height = 300;
+        canvas.style.border = "1px solid #f00";
+
+        var context = canvas.getContext("2d");
+
+
+        var space = 20;
+
+        var aWidth = 10;
+
+        var zeroX = space;
+
+        var zeroY = canvas.height - space;
+
+
+        // 绘制X轴
+        context.moveTo(zeroX, zeroY);
+        context.lineTo(canvas.width - space, zeroY);
+        context.lineTo(canvas.width - space - aWidth, zeroY + aWidth/2);
+        context.lineTo(canvas.width - space - aWidth, zeroY - aWidth/2);
+        context.lineTo(canvas.width - space, zeroY);
+        context.fill();
+        context.stroke();
+
+
+        // 绘制Y轴
+        context.moveTo(zeroX, zeroY);
+        context.lineTo(zeroX, space);
+        context.lineTo(zeroX + aWidth/2, space + aWidth);
+        context.lineTo(zeroX - aWidth/2, space + aWidth);
+        context.lineTo(zeroX, space);
+        context.fill();
+        context.stroke();
+
+
+    </script>
+
+
+</body>
+</html>

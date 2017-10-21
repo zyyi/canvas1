@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas绘制不同颜色的多条线段</title>
+
+</head>
+<body>
+
+<canvas width="600" height="300"></canvas>
+
+
+<script>
+
+    var canvas = document.querySelector("canvas");
+
+    canvas.style.border = "1px solid #f00";
+
+    var context = canvas.getContext("2d");
+    console.log(context);
+
+    // 第一条
+    context.beginPath();
+    context.moveTo(100, 50);
+    context.lineTo(200, 50);
+    context.strokeStyle = "red";
+    context.stroke();
+
+    // 第二条
+    context.beginPath();
+    context.moveTo(100, 100);
+    context.lineTo(200, 100);
+    context.strokeStyle = "green";
+    context.stroke();
+
+//     第三条
+    context.beginPath();
+    context.moveTo(100, 150);
+    context.lineTo(200, 150);
+    context.strokeStyle = "blue";
+
+    context.stroke();
+
+
+
+    /*
+    * 问题：上面三条线所显示的样式都是最后一条线设置的样式
+    * 原因：canvas渲染图形的时候，他是基于状态，所谓状态就是每一次用（stroke/fill）之类的api
+    * 渲染图形的时候，canvas会检查整个程序定义的strokeStyle，fillStyle，lineWidth等，
+    * 当一个状态值没有被改变的时候，canvas就一直用这个状态
+    * 如果该状态改变，需要注意以下几点：
+    * 1. 如果使用beginPath() 开始一个新的路径，则不同路径使用当前路径的值
+    * 2. 如果没有使用beginPath() 开始一个新的路径，后面的会覆盖前面的
+    *
+    * */
+
+
+
+
+</script>
+
+
+</body>
+</html>

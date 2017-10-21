@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas 绘制线段（直线）</title>
+</head>
+<body>
+    <canvas width="600px" height="300px"></canvas>
+
+
+    <script>
+
+        var canvas = document.querySelector("canvas");
+//        canvas.width = 600;
+//        canvas.height = 300;
+
+        canvas.style.border = "1px solid red";
+
+        // 获取2d画笔
+        var context = canvas.getContext("2d");
+
+        // 计算直线起始点
+        // context.moveTo(x, y); 让画笔移动到那个坐标开始画
+        context.moveTo(10, 10);
+        // 计划直线终止点
+        // context.lineTo(x, y);  让画笔最终停止的点的坐标
+        context.lineTo(110, 110);
+        // 开始上画笔
+        context.stroke();   // 描边，把起始点与终点连起来
+
+    </script>
+</body>
+</html>

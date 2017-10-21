@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas绘制渐变的线条</title>
+</head>
+<body>
+
+<canvas></canvas>
+
+
+<script>
+    var canvas = document.querySelector("canvas");
+
+    canvas.width = 600;
+    canvas.height = 300;
+    canvas.style.border = "1px solid #f00";
+
+    var context = canvas.getContext("2d");
+
+    context.lineWidth = 10;
+
+    for (var i = 0; i <= 255; i++) {
+        context.beginPath();
+        context.moveTo(10 + i, 100);
+        context.lineTo(11 + i, 100);
+        context.strokeStyle = "rgb("+ 255 +", "+i+", "+i+")";
+//        context.strokeStyle = "rgb("+ parseInt(Math.random()*256) +", "+ parseInt(Math.random()*256) +", "+ parseInt(Math.random()*256) +")";
+        context.stroke();
+    }
+
+
+
+</script>
+
+
+
+</body>
+</html>
