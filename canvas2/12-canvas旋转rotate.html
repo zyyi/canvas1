@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas绘制图片</title>
+</head>
+<body>
+
+<canvas></canvas>
+
+<script>
+    var canvas = document.querySelector("canvas");
+    canvas.width = 600;
+    canvas.height = 400;
+    canvas.style.border = "1px solid #f00";
+    var context = canvas.getContext("2d");
+
+    // translate   rotate    scale   需要写在创建区域的前面
+
+    // 平移 translate
+    // 参数： x，y  需要平移的距离,不能省略
+    // context.translate(x, y)
+    //    context.translate(50, 50);
+
+
+    // 旋转 rotate   是以画布的左上角为圆心进行旋转的
+    // 参数：弧度
+    // context.rotate(deg);
+    //    context.rotate(30 * Math.PI/180);
+
+    // 缩放 scale
+    // 参数：两个，横向和纵向放大的倍数
+    // context.scale(sx, sy);
+    // 缩放的不仅是图像的大小，还有图像边框的粗细，还有坐标也缩放了
+    context.scale(1.5, 1.5);
+
+
+    context.moveTo(canvas.width/2, canvas.height/2);
+    context.strokeRect(canvas.width/2 - 50, canvas.height/2 - 25, 100, 50);
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

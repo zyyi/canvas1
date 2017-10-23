@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas绘制图片</title>
+</head>
+<body>
+
+<canvas></canvas>
+
+<script>
+    var canvas = document.querySelector("canvas");
+    canvas.width = 600;
+    canvas.height = 400;
+    canvas.style.border = "1px solid #f00";
+    var context = canvas.getContext("2d");
+
+
+    // 实例化图片对象
+    var img = new Image();
+    // 设置img的src属性
+    img.src = "./images/avatar.jpg";
+    // onload事件，在图片加载完成后立即执行
+    img.onload = function () {
+        // 将图片绘制到canvas中
+        // context.drawImage(img图片, dx(图片左上角X轴的坐标), dy(图片左上角y轴的坐标));
+//        context.drawImage(img, 100, 100);
+
+
+        // 绘制指定区域大小, dWidth和dHeight是图片的宽高
+        // context.drawImage(img图片, dx(图片左上角X轴的坐标), dy(图片左上角y轴的坐标), dWidth(绘制区域的宽度), dHeight(绘制区域的高度));
+//        context.drawImage(img, 100, 100, 50, 50);
+
+
+        // 绘制图片上的任意区域
+        // 参数：
+        // img: 图片实例
+        // sx: 剪切图片区域的左上角的X轴坐标
+        // sy: 剪切图片区域的左上角的Y轴坐标
+        // sWidth: 剪切图片区域的宽度
+        // sHeight: 剪切图片区域的高度
+        // dX: 剪切出的图片在canvas中的X轴的坐标
+        // dY: 剪切出的图片在canvas中的Y轴的坐标
+        // dWidth: 剪切出的图片显示的宽度
+        // dHeight: 剪切出的图片显示的高度
+//        context.drawImage(img, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+
+        context.drawImage(img, 20, 20, 40, 40, 10, 10, 40, 40);
+
+    }
+
+
+</script>
+
+
+</body>
+</html>

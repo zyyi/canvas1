@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cnavas绘制圆弧</title>
+</head>
+<body>
+<canvas></canvas>
+
+<script>
+
+    var canvas = document.querySelector("canvas");
+    canvas.width = 600;
+    canvas.height = 400;
+    canvas.style.border = "1px solid #f00";
+    var context = canvas.getContext("2d");
+
+    // 横轴
+    context.beginPath();
+    context.moveTo(0, canvas.height/2);
+    context.lineTo(canvas.width, canvas.height/2);
+    context.stroke();
+
+    // 纵轴
+    context.beginPath();
+    context.moveTo(canvas.width/2, 0);
+    context.lineTo(canvas.width/2, canvas.height);
+    context.stroke();
+
+
+    // 绘制圆弧：context.arc(圆的圆心X坐标,圆心Y坐标,半径,开始弧度,结束弧度);
+
+
+    // 扇形
+    context.beginPath();
+    context.moveTo(canvas.width/2, canvas.height/2);
+    context.arc(canvas.width/2, canvas.height/2, 150, 60*Math.PI/180, 120*Math.PI/180);
+    context.closePath();
+    context.stroke();
+    //    context.fill();
+
+
+</script>
+</body>
+</html>

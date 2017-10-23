@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas绘制折线图</title>
+</head>
+<body>
+
+<canvas></canvas>
+
+<script>
+
+    //  功能： 绘制折线图
+    //  思路： 1. 绘制坐标系
+            // 2. 绘制小方块
+            // 3. 绘制多个点
+            // 4. 连线
+
+
+    // 1. 准备数据(相对于坐标轴原点的数据)
+    var data = [
+        {x: 100, y: 100},
+        {x: 200, y: 120},
+        {x: 300, y: 180},
+        {x: 400, y: 300},
+        {x: 500, y: 140}
+    ];
+
+    // 2. 创建构造函数
+    var LineChart = function () {
+        // 获取画布并设置相关属性
+        this.canvas = document.querySelector("canvas");
+        this.canvas.width = 600;
+        this.canvas.height = 400;
+        this.canvas.style.border = "1px solid #f00";
+        this.context = this.canvas.getContext("2d");
+        // 画布的宽高
+        this.width = this.canvas.width;
+        this.height = this.canvas.height;
+        // 坐标与画布的间隙
+        this.space = 20;
+        // 坐标箭头的大小
+        this.arrow = 10;
+        // 小方块的大小
+        this.square = 8;
+        // 坐标轴原点的坐标
+        this.zeroX = this.space;
+        this.zeroY = this.height - this.space;
+    }
+
+    // 3. 给构造函数的原型上添加绘制坐标的方法
+    LineChart.prototype.drawAxis = function () {
+        // X 轴
+        this.context.beginPath();
+        this.context.moveTo(this.zeroX, this.zeroY);
+        // 画X轴的线段
+        this.context.lineTo(this.width - this.space, this.zeroY);
+        // 画三角
+        this.context.lineTo(this.width - this.space - this.arrow, this.height - this.space + this.arrow/2);
+        this.context.lineTo(this.width - this.space - this.arrow, this.height - this.space - this.arrow/2);
+        this.context.lineTo(this.width - this.space, this.zeroY);
+        this.context.stroke();
+        this.context.fill();
+
+        // Y 轴
+        this.context.beginPath();
+        this.context.moveTo(this.zeroX, this.zeroY);
+        // 画Y轴的线段
+        this.context.lineTo(this.zeroX, this.space);
+        // 画三角
+        this.context.lineTo(this.zeroX + this.arrow/2, this.space + this.arrow);
+        this.context.lineTo(this.zeroX - this.arrow/2, this.space + this.arrow);
+        this.context.lineTo(this.zeroX, this.space);
+        this.context.stroke();
+        this.context.fill();
+    }
+
+
+    // 4.给原型添加绘制小方块的方法
+    LineChart.prototype.drawSquare = function (data) {
+        this.context.beginPath();
+//        this.context.moveTo(data.x - this.square/2, data.y - this.square/2);
+        this.context.fillRect(data.x - this.square/2, data.y - this.square/2, this.square, this.square);
+    }
+
+    // 5.给原型添加坐标转换的方法
+    LineChart.prototype.transform = function (data) {
+        // 缓存this
+        var _this = this;
+        var canvasData = [];
+        // 将传入的数据进行处理后，存入到新的数组中
+        // （原来的数据是相对于坐标轴，转换后的数据是相对于画布的左上角点）
+        data.forEach(function (item) {
+            canvasData.push({
+                x: _this.zeroX + item.x,
+                y: _this.zeroY - item.y
+            })
+        })
+        return canvasData;
+    }
+
+
+    // 6. 绘制数据的小点
+    LineChart.prototype.drawDots = function (data) {
+        // 缓存this
+        var _this = this;
+        // 创建一个变量，用来存储转换后的坐标数据
+        var canvasData = this.transform(data);
+        // 画小方块
+        canvasData.forEach(function (item, i) {
+            // 先画小方块
+            _this.drawSquare(item);
+            // 连线，先判断是不是坐标原点
+            if (i == 0) {
+                _this.drawLine(_this.zeroX, _this.zeroY, item.x, item.y)
+            } else {
+                _this.drawLine(canvasData[i-1].x, canvasData[i-1].y, item.x, item.y);
+            }
+        });
+
+    }
+
+    // 7. 给实例添加连线的方法
+    LineChart.prototype.drawLine = function (startX, startY, endX, endY) {
+        this.context.beginPath();
+        this.context.moveTo(startX, startY);
+        this.context.lineTo(endX, endY);
+        this.context.stroke();
+    }
+    
+    
+    // 8. 给实例添加初始化绘制折线图方法
+    LineChart.prototype.init = function () {
+        // 先绘制坐标
+        this.drawAxis();
+        // 绘制折线与点
+        this.drawDots(data);
+    }
+
+
+    // 调用方法
+    new LineChart().init();
+
+
+
+</script>
+
+
+</body>
+</html>
